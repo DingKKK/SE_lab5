@@ -4,7 +4,9 @@
 #include <QWidget>
 #include<string>
 #include<vector>
+#include <queue>
 #include<iostream>
+#include"couple.h"
 using namespace std;
 QT_BEGIN_NAMESPACE
 namespace Ui { class confirm; }
@@ -17,6 +19,8 @@ class confirm : public QWidget
 public:
     confirm(QWidget *parent = nullptr);
     ~confirm();
+    void setColor();
+    bool compare(string s1,string s2);
 signals:
     void equalSignal();
     void inequalSignal();
@@ -32,8 +36,11 @@ private slots:
     void on_inequal_clicked();
 private:
     Ui::confirm *ui;
-    vector<vector<string*>> couples;
-    vector<vector<string*>> couplesDeleted;
+//    using couple=Item<string,string,int>;
+//    priority_queue<couple, std::vector<couple>, std::less<couple>> coupleWeighted;
+    vector<couple> coupleWeighted;
+    vector<string> f1compare;
+    vector<string> f2compare;
     string f1;
     string f2;
     QStandardItemModel* model1;
