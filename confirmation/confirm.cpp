@@ -36,8 +36,11 @@ confirm::~confirm()
 
 void confirm::on_Confirm_clicked()
 {
+<<<<<<< HEAD
     qDebug()<<"test revert version1";
     qDebug()<<"test revert version2";
+=======
+>>>>>>> parent of 7dad79b... test revert version1
     f1compare.clear();
     f2compare.clear();
     ui->fN1->clear();
