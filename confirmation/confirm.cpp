@@ -36,6 +36,7 @@ confirm::~confirm()
 
 void confirm::on_Confirm_clicked()
 {
+    qDebug()<<"test revert version1";
     f1compare.clear();
     f2compare.clear();
     ui->fN1->clear();
