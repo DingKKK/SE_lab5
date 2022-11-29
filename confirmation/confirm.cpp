@@ -8,6 +8,7 @@
 #include<QDebug>
 #include<QMessageBox>
 #include"confirm.h"
+#include"compare.h"
 using namespace std;
 confirm::confirm(QWidget *parent)
     : QWidget(parent)
@@ -36,6 +37,7 @@ confirm::~confirm()
 
 void confirm::on_Confirm_clicked()
 {
+    qDebug()<<"test stash";
     f1compare.clear();
     f2compare.clear();
     ui->fN1->clear();
@@ -300,7 +302,8 @@ void confirm::setColor()
         flag=0;
         for(int j=0;j<(int)f2compare.size();++j)
         {
-            if(compare(f1compare[i],f2compare[j]))
+            compare c(f1compare[i],f2compare[j]);
+            if(c.textComparison())
             {
                 flag=1;
                 color1[i]=0;
@@ -319,7 +322,8 @@ void confirm::setColor()
         flag=0;
         for(int j=0;j<(int)f1compare.size();++j)
         {
-            if(compare(f2compare[i],f1compare[j]))
+            compare c(f2compare[i],f1compare[j]);
+            if(c.textComparison())
             {
                 flag=1;
                 color2[i]=0;
@@ -395,89 +399,4 @@ void confirm::setColor()
         y++;
         lineJ++;
     }
-
-//    while(i<(int)f1compare.size()&&j<(int)f2compare.size())
-//    {
-//        if(compare(f1compare[i],f2compare[j]))
-//        {
-//            while(lineI<lineJ)
-//            {
-//                model1->setItem(lineI,0,new QStandardItem("//////////////////////////////////////////////////////////////////////////////////"));
-//                model1->item(lineI, 0)->setBackground(QBrush(QColor(169, 169, 169)));
-//                lineI++;
-//            }
-//            while(lineJ<lineI)
-//            {
-//                model2->setItem(lineJ,0,new QStandardItem("//////////////////////////////////////////////////////////////////////////////////"));
-//                model2->item(lineJ, 0)->setBackground(QBrush(QColor(169, 169, 169)));
-//                lineJ++;
-//            }
-//            model1->setItem(lineI,0,new QStandardItem(f1compare[i].c_str()));
-//            model2->setItem(lineJ,0,new QStandardItem(f2compare[j].c_str()));
-//            lineI++;
-//            lineJ++;
-//            i++;
-//            j++;
-//        }
-//        else
-//        {
-//            model2->setItem(lineJ,0,new QStandardItem(f2compare[j].c_str()));
-//            model2->item(lineJ, 0)->setForeground(QBrush(QColor(255, 0, 0)));
-//            model2->item(lineJ, 0)->setBackground(QBrush(QColor(255, 228, 225)));
-//            lineJ++;
-//            j++;
-//        }
-//    }
-//    for(;i<(int)f1compare.size();++i)
-//    {
-//        model1->setItem(lineI,0,new QStandardItem(f1compare[i].c_str()));
-//        model1->item(lineI, 0)->setForeground(QBrush(QColor(0, 255, 0)));
-//        model1->item(lineI, 0)->setBackground(QBrush(QColor(245, 255, 250)));
-//        lineI++;
-//    }
-//    while(lineJ<lineI)
-//    {
-//        model2->setItem(lineJ,0,new QStandardItem("//////////////////////////////////////////////////////////////////////////////////"));
-//        model2->item(lineJ, 0)->setBackground(QBrush(QColor(169, 169, 169)));
-//        lineJ++;
-//    }
-}
-bool judge(char c)
-{
-    if(c<33||c>126)
-        return true;
-    else return false;
-}
-bool confirm::compare(string s1,string s2)
-{
-    char* c1=new char[s1.length()];
-    char* c2=new char[s2.length()];
-    int i=0,j=0;
-    while(i<s1.length())
-    {
-        if(!judge(s1[i]))
-        {
-            c1[j]=s1[i];
-            j++;
-        }
-        i++;
-    }
-    c1[j]='\0';
-    i=0;j=0;
-    while(i<s2.length())
-    {
-        if(!judge(s2[i]))
-        {
-            c2[j]=s2[i];
-            j++;
-        }
-        i++;
-    }
-    c2[j]='\0';
-    qDebug()<<c1;
-    qDebug()<<c2;
-    if(strcmp(c1,c2)==0)
-        return true;
-    else
-        return false;
 }

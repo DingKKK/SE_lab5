@@ -20,7 +20,6 @@ public:
     confirm(QWidget *parent = nullptr);
     ~confirm();
     void setColor();
-    bool compare(string s1,string s2);
 signals:
     void equalSignal();
     void inequalSignal();
