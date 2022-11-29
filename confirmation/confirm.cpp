@@ -293,46 +293,18 @@ void confirm::setColor()
     int lineI=0;
     int lineJ=0;
     int flag;
-    int* color1=new int[f1compare.size()];
-    int* color2=new int[f2compare.size()];
     vector<int> same1;
     vector<int> same2;
     for(int i=0;i<(int)f1compare.size();++i)
     {
-        flag=0;
         for(int j=0;j<(int)f2compare.size();++j)
         {
             compare c(f1compare[i],f2compare[j]);
             if(c.textComparison())
             {
-                flag=1;
-                color1[i]=0;
-                color2[j]=0;
                 same1.push_back(i);
                 same2.push_back(j);
             }
-        }
-        if(flag==0)
-        {
-            color1[i]=1;
-        }
-    }
-    for(int i=0;i<(int)f2compare.size();++i)
-    {
-        flag=0;
-        for(int j=0;j<(int)f1compare.size();++j)
-        {
-            compare c(f2compare[i],f1compare[j]);
-            if(c.textComparison())
-            {
-                flag=1;
-                color2[i]=0;
-                color1[j]=0;
-            }
-        }
-        if(flag==0)
-        {
-            color2[i]=1;
         }
     }
     int x=0,y=0;
